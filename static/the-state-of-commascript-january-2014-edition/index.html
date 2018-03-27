@@ -1,0 +1,271 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>The State of CommaScript, January 2014 edition</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=d03024f356">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://138.68.15.179/the-state-of-commascript-january-2014-edition/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://138.68.15.179/the-state-of-commascript-january-2014-edition/amp/">
+    
+    <meta property="og:site_name" content="Theoretical Ideations">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The State of CommaScript, January 2014 edition">
+    <meta property="og:description" content="Ever since I first announced CommaScript back in August of 2013, I've been working on getting the first implementation finished. It's a reasonably large project, so I'm not done yet, but I am making progress. Most of the syntax has been defined, and about two thirds of the analyzer is">
+    <meta property="og:url" content="http://138.68.15.179/the-state-of-commascript-january-2014-edition/">
+    <meta property="article:published_time" content="2014-01-11T11:02:49.000Z">
+    <meta property="article:modified_time" content="2014-03-17T05:54:19.000Z">
+    <meta property="article:tag" content="CommaScript">
+    <meta property="article:tag" content="JavaScript">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The State of CommaScript, January 2014 edition">
+    <meta name="twitter:description" content="Ever since I first announced CommaScript back in August of 2013, I've been working on getting the first implementation finished. It's a reasonably large project, so I'm not done yet, but I am making progress. Most of the syntax has been defined, and about two thirds of the analyzer is">
+    <meta name="twitter:url" content="http://138.68.15.179/the-state-of-commascript-january-2014-edition/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Bryan Hughes">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="CommaScript, JavaScript">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Theoretical Ideations",
+        "logo": "http://138.68.15.179/ghost/img/ghosticon.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Bryan Hughes",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "http://138.68.15.179/author/bryan-hughes/",
+        "sameAs": [
+            "https://github.com/bryan-m-hughes"
+        ],
+        "description": "I&#x27;m a web framework dev at Rdio and love JavaScript! I&#x27;m also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!"
+    },
+    "headline": "The State of CommaScript, January 2014 edition",
+    "url": "http://138.68.15.179/the-state-of-commascript-january-2014-edition/",
+    "datePublished": "2014-01-11T11:02:49.000Z",
+    "dateModified": "2014-03-17T05:54:19.000Z",
+    "keywords": "CommaScript, JavaScript",
+    "description": "Ever since I first announced CommaScript back in August of 2013, I&#x27;ve been working on getting the first implementation finished. It&#x27;s a reasonably large project, so I&#x27;m not done yet, but I am making progress. Most of the syntax has been defined, and about two thirds of the analyzer is",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://138.68.15.179"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.11">
+    <link rel="alternate" type="application/rss+xml" title="Theoretical Ideations" href="http://138.68.15.179/rss/">
+</head>
+<body class="post-template tag-commascript tag-javascript nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://138.68.15.179/">Home</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="http://138.68.15.179/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-commascript tag-javascript">
+
+        <header class="post-header">
+            <h1 class="post-title">The State of CommaScript, January 2014 edition</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2014-01-11">11 January 2014</time>  on <a href="../tag/commascript/">CommaScript</a>, <a href="../tag/javascript/">JavaScript</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>Ever since I first announced <a title="Introducing CommaScript: statically typed JavaScript without the fuss" href="http://theoreticalideations.com/2013/08/07/introducing-commascript-statically-typed-javascript-without-the-fuss/">CommaScript</a> back in August of 2013, I've been working on getting the first implementation finished. It's a reasonably large project, so I'm not done yet, but I am making progress. Most of the syntax has been defined, and about two thirds of the analyzer is implemented.</p>
+
+<p>Primitives are the furthest ahead since they form the building blocks of everything else. As it turns out, the syntax is even simpler than I first anticipated: there is no syntax :).</p>
+
+<p>In CommaScript, the <code>var</code> keyword works just like the <code>auto</code> keyword in C++/11 or the <code>var</code> keyword in C# (I think Java recently added something similar, but I haven't been keeping up with Java lately). The key difference, of course, is that there is no typed alternative to <code>var</code> in JavaScript (and thus CommaScript), unlike C++ or C# with <code>int</code>, <code>char</code>, etc.  This means that all <code>var</code> expressions must have a resolvable type on the right hand side in CommaScript.</p>
+
+<p>For primitives, this is actually really simple, since all primitive literals have an inherent type (a string is obviously a string, and obviously not a number, or object, and so on). Primitives also have mechanisms for converting to other primitive types (<code>toString()</code>, <code>toValue()</code>, <code>!!</code>, etc). This means that there isn't any information that needs to be inferred that isn't already there in JavaScript syntax.</p>
+
+<p>Most of the implementation behind primitives is finished as well. The only thing missing is a few expressions (mostly unary expressions). This means that all sorts of expressions are possible today. The following parses correctly:</p>
+
+<pre><code class="language-JavaScript">'use commascript';
+
+var foo = true;  
+foo = false;  
+</code></pre>
+
+<p>as does:</p>
+
+<pre><code class="language-JavaScript">'use commascript';
+
+var w = 0,  
+    x = true,
+    y = 10,
+    z = 20;
+
+w = x ? y : z + 20;  
+</code></pre>
+
+<p>And the following correctly throws an error:</p>
+
+<pre><code class="language-JavaScript">'use commascript';
+
+var x = 0;
+
+x = 10 * 'hello';  
+</code></pre>
+
+<p>I also have functions fully implemented. Functions cannot be fully inferred, however, so they need to be declared ahead of time. There are two ways to do this: via function expressions or function declarations. Function expressions are more explicit, and a bit easier to read, but also more verbose.</p>
+
+<pre><code class="language-JavaScript">'use commascript';
+
+('define(function,foo)', {});
+
+var foo = ('cast(foo)', function () {});  
+</code></pre>
+
+<p>The other is a function definition, which shortcuts some of the more explicit nature of function expressions:</p>
+
+<pre><code class="language-JavaScript">'use commascript';
+
+('define(function,foo)', {
+  returnType: 'string',
+  argumentTypes: ['string', 'number']
+});
+
+function foo(a, b) {  
+  var x = 'str',
+      y = 10;
+  x = a;
+  y = b;
+  return x;
+}
+</code></pre>
+
+<p>Objects are about half way defined. Object literals are supported, but constructors/prototypes are not.</p>
+
+<pre><code class="language-JavaScript">('define(object,foo)', {
+  properties: {
+    'bar': 'string',
+    'baz': 'number'
+  }
+});
+
+var obj = ('cast(foo)', null);  
+obj = {  
+  'bar': 'hello world',
+  'baz': 10
+};
+obj.bar = 'goodbye';  
+obj.baz = 20;  
+</code></pre>
+
+<p>Arrays are not supported at all yet.</p>
+
+<p>So that's where CommaScript is at these days. Making progress, but still a ways to go.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/bryan-hughes/" style="background-image: url(https://www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s&amp;)"><span class="hidden">Bryan Hughes's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/bryan-hughes/">Bryan Hughes</a></h4>
+
+                    <p>I'm a web framework dev at Rdio and love JavaScript! I'm also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">San Francisco, CA</span>
+                    <span class="author-link icon-link"><a href="https://github.com/bryan-m-hughes">https://github.com/bryan-m-hughes</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=The%20State%20of%20CommaScript%2C%20January%202014%20edition&amp;url=http://138.68.15.179/the-state-of-commascript-january-2014-edition/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://138.68.15.179/the-state-of-commascript-january-2014-edition/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://138.68.15.179/the-state-of-commascript-january-2014-edition/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="../im-leaving-windows-phone-for-ios-begrudgingly/">
+        <section class="post">
+            <h2>I'm leaving Windows Phone for iOS, begrudgingly</h2>
+            <p>I owned an HTC Windows Phone 8X for a little under a year and a half, and after some…</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="../clementines-story-the-walking-dead-season-2/">
+        <section class="post">
+            <h2>Clementine's Story: The Walking Dead Season 2</h2>
+            <p>I just finished playing the first episode of The Walking Dead Season 2, titled "All That Remains." It's no…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://138.68.15.179">Theoretical Ideations</a> © 2018</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=d03024f356"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=d03024f356"></script>
+
+</body>

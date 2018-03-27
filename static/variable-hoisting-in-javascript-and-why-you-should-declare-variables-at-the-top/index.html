@@ -1,0 +1,245 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Variable hoisting in JavaScript and why you should declare variables at the top</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=d03024f356">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://138.68.15.179/variable-hoisting-in-javascript-and-why-you-should-declare-variables-at-the-top/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://138.68.15.179/variable-hoisting-in-javascript-and-why-you-should-declare-variables-at-the-top/amp/">
+    
+    <meta property="og:site_name" content="Theoretical Ideations">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Variable hoisting in JavaScript and why you should declare variables at the top">
+    <meta property="og:description" content="I was recently forwarded an article called JavaScript Adolescence. Go read the article because it's a good one, for the most part. Done? OK. There's some great stuff to think about, and I especially like his thoughts on inline regex's, single letter variable names, and truthiness vs. presence. There is">
+    <meta property="og:url" content="http://138.68.15.179/variable-hoisting-in-javascript-and-why-you-should-declare-variables-at-the-top/">
+    <meta property="article:published_time" content="2012-11-28T10:31:19.000Z">
+    <meta property="article:modified_time" content="2014-10-28T21:16:26.000Z">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Variable hoisting in JavaScript and why you should declare variables at the top">
+    <meta name="twitter:description" content="I was recently forwarded an article called JavaScript Adolescence. Go read the article because it's a good one, for the most part. Done? OK. There's some great stuff to think about, and I especially like his thoughts on inline regex's, single letter variable names, and truthiness vs. presence. There is">
+    <meta name="twitter:url" content="http://138.68.15.179/variable-hoisting-in-javascript-and-why-you-should-declare-variables-at-the-top/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Bryan Hughes">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Theoretical Ideations",
+        "logo": "http://138.68.15.179/ghost/img/ghosticon.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Bryan Hughes",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "http://138.68.15.179/author/bryan-hughes/",
+        "sameAs": [
+            "https://github.com/bryan-m-hughes"
+        ],
+        "description": "I&#x27;m a web framework dev at Rdio and love JavaScript! I&#x27;m also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!"
+    },
+    "headline": "Variable hoisting in JavaScript and why you should declare variables at the top",
+    "url": "http://138.68.15.179/variable-hoisting-in-javascript-and-why-you-should-declare-variables-at-the-top/",
+    "datePublished": "2012-11-28T10:31:19.000Z",
+    "dateModified": "2014-10-28T21:16:26.000Z",
+    "description": "I was recently forwarded an article called JavaScript Adolescence. Go read the article because it&#x27;s a good one, for the most part. Done? OK. There&#x27;s some great stuff to think about, and I especially like his thoughts on inline regex&#x27;s, single letter variable names, and truthiness vs. presence. There is",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://138.68.15.179"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.11">
+    <link rel="alternate" type="application/rss+xml" title="Theoretical Ideations" href="http://138.68.15.179/rss/">
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://138.68.15.179/">Home</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="http://138.68.15.179/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Variable hoisting in JavaScript and why you should declare variables at the top</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2012-11-28">28 November 2012</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>I was recently forwarded an article called <a href="http://james.padolsey.com/javascript/js-adolescence/">JavaScript Adolescence</a>. Go read the article because it's a good one, for the most part. Done? OK. There's some great stuff to think about, and I especially like his thoughts on inline regex's, single letter variable names, and truthiness vs. presence. There is one thing I disagree with pretty strongly though: his claim that variables should be declared where they make sense.</p>
+
+<p>The author states in the article:  </p>
+
+<blockquote>I declare a variable where it makes sense. Much of the time this is at the top of the scope, but there are enough exceptions to make me shake my head in dissapproval [sic] at the thought of a style guide imposing religious top-of-scope declarations.</blockquote>  
+
+<p>Simply put I don't agree, and the reason is variable hoisting. While this is an easy enough concept for good JavaScript programmers, it causes constant confusion and heartache for programmers coming from other languages and programmers with less experience.</p>
+
+<p>Let's look at a common bug that I come across far more often than my sanity and faith in other programmers would like:</p>
+
+<pre><code class="language-JavaScript">var arr = [1, 2, 3, 4]  
+for(var i = 0; i &lt; arr.length; i++) {  
+    var entry = arr[i];
+    setTimeout(function() {
+        console.log(entry);
+    }, 100);
+}
+</code></pre>
+
+<p>Most often this design pattern is used with event listeners, not setTimeout, but the end result is the same: developers are confused when their output is:</p>
+
+<pre><code>4  
+4  
+4  
+4  
+</code></pre>
+
+<p>Rewriting this code with the var declarations at the top make it clear what's going on, and the bug would have (most likely) been avoided. Why?</p>
+
+<p>It all comes down to variable hoisting (a term I disagree with because of some under the hood implementation details, but whatever). JavaScript runtimes evaluate code in two phases, not one. In the first pass, all identifiers (variables and functions) are determined and added to the current context's lexical environment (basically a symbol table in JavaScript that matches identifier names to their values). After this pass has been completed, the code is then executed in a second pass. In effect, JavaScript interpreters actually see the above code as:</p>
+
+<pre><code class="language-JavaScript">var arr,  
+    i,
+    len,
+    entry;
+arr = [1, 2, 3, 4]  
+for(i = 0; i &lt; arr.length; i++) {  
+    entry = arr[i];
+    setTimeout(function() {
+        console.log(entry);
+    }, 100);
+}
+</code></pre>
+
+<p>It becomes obvious here that <code>entry</code> is a single instance that is continually overwritten in the for loop as opposed to four separate instances, but it's not so obvious in the original version. My advice: always, without exception, declare your variables at the top of a function if in a function, else at the top of the file. In fact, this is the only design pattern that I do recommend following religiously in JavaScript. It's just too easy to get confused otherwise.</p>
+
+<p>But what if you're a JavaScript expert who understands variable hoisting perfectly? You should still declare your variables at the top. I still follow this design pattern, despite the fact that I am intimately familiar with how JavaScript runtimes work since I'm writing one myself. The reason: no one ever works in a vacuum. Other people are bound to work on your code at some point in time. They may not be an expert like you or me, and they may end up breaking all of the amazing work you did on the project before they took it over. Also, as JavaScript experts, we should be trying to help out other devs who aren't experts, and "Do as I say, not as I do" doesn't exactly go over well.</p>
+
+<p>We should be setting an example of how to write good code. Not just good according to our own standards, or good for ourselves, but good for everyone. Yes it's annoying declaring variables at the top, but it really does save time down the road when dealing with non-experts.</p>
+
+<p><strong>Update:</strong> So I no longer agree with what I wrote above, please disregard it :). My basic reasons why are summed up well by Angus Croll in his presentation <a href="https://speakerdeck.com/anguscroll/the-politics-of-javascript">"The Politics of JavaScript"</a>. These days, I usually either declare variables inline if they are initialized in one spot, or declare them at the innermost block that contains all initializations, e.g.:</p>
+
+<pre><code class="language-JavaScript">function foo() {  
+  console.log('start');
+  for (var i = 0; i &lt; 10; i++) {
+    console.log(i);
+  }
+  var val;
+  if (1) {
+    val = true;
+  } else {
+    val = false
+  }
+}
+</code></pre>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/bryan-hughes/" style="background-image: url(https://www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s&amp;)"><span class="hidden">Bryan Hughes's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/bryan-hughes/">Bryan Hughes</a></h4>
+
+                    <p>I'm a web framework dev at Rdio and love JavaScript! I'm also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">San Francisco, CA</span>
+                    <span class="author-link icon-link"><a href="https://github.com/bryan-m-hughes">https://github.com/bryan-m-hughes</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Variable%20hoisting%20in%20JavaScript%20and%20why%20you%20should%20declare%20variables%20at%20the%20top&amp;url=http://138.68.15.179/variable-hoisting-in-javascript-and-why-you-should-declare-variables-at-the-top/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://138.68.15.179/variable-hoisting-in-javascript-and-why-you-should-declare-variables-at-the-top/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://138.68.15.179/variable-hoisting-in-javascript-and-why-you-should-declare-variables-at-the-top/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="../how-do-you-do-dynamic-offline-javascript-anyways/">
+        <section class="post">
+            <h2>How do you do dynamic offline JavaScript anyways?</h2>
+            <p>In a previous post, I established that doing dynamic JavaScript analysis is the way to go for the Titanium…</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="https://theoreticalideations.com/hiking-purisima-creek-and-photography/">
+        <section class="post">
+            <h2>Hiking Purisima Creek and Photography</h2>
+            <p>On Black Friday this year, I decided to forego the mad shopping experience and instead go for a hike.…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://138.68.15.179">Theoretical Ideations</a> © 2018</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=d03024f356"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=d03024f356"></script>
+
+</body>

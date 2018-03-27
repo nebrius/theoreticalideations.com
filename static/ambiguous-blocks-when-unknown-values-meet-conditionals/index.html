@@ -1,0 +1,221 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Ambiguous Blocks: when unknown values meet conditionals</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=d03024f356">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://138.68.15.179/ambiguous-blocks-when-unknown-values-meet-conditionals/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://138.68.15.179/ambiguous-blocks-when-unknown-values-meet-conditionals/amp/">
+    
+    <meta property="og:site_name" content="Theoretical Ideations">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Ambiguous Blocks: when unknown values meet conditionals">
+    <meta property="og:description" content="I last talked about unknown values and how they work in expressions, but what happens when an unknown value is passed to a conditional statement? Let's say you try to do: var x = new Date();   if (x &amp;lt; new Date(2013, 3, 12)) {       console.log('It is before April 12th,">
+    <meta property="og:url" content="http://138.68.15.179/ambiguous-blocks-when-unknown-values-meet-conditionals/">
+    <meta property="article:published_time" content="2013-04-12T12:37:58.000Z">
+    <meta property="article:modified_time" content="2014-03-17T05:44:00.000Z">
+    <meta property="article:tag" content="Titanium Code Processor">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Ambiguous Blocks: when unknown values meet conditionals">
+    <meta name="twitter:description" content="I last talked about unknown values and how they work in expressions, but what happens when an unknown value is passed to a conditional statement? Let's say you try to do: var x = new Date();   if (x &amp;lt; new Date(2013, 3, 12)) {       console.log('It is before April 12th,">
+    <meta name="twitter:url" content="http://138.68.15.179/ambiguous-blocks-when-unknown-values-meet-conditionals/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Bryan Hughes">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Titanium Code Processor">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Theoretical Ideations",
+        "logo": "http://138.68.15.179/ghost/img/ghosticon.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Bryan Hughes",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "http://138.68.15.179/author/bryan-hughes/",
+        "sameAs": [
+            "https://github.com/bryan-m-hughes"
+        ],
+        "description": "I&#x27;m a web framework dev at Rdio and love JavaScript! I&#x27;m also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!"
+    },
+    "headline": "Ambiguous Blocks: when unknown values meet conditionals",
+    "url": "http://138.68.15.179/ambiguous-blocks-when-unknown-values-meet-conditionals/",
+    "datePublished": "2013-04-12T12:37:58.000Z",
+    "dateModified": "2014-03-17T05:44:00.000Z",
+    "keywords": "Titanium Code Processor",
+    "description": "I last talked about unknown values and how they work in expressions, but what happens when an unknown value is passed to a conditional statement? Let&#x27;s say you try to do: var x &#x3D; new Date();   if (x &amp;lt; new Date(2013, 3, 12)) {       console.log(&#x27;It is before April 12th,",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://138.68.15.179"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.11">
+    <link rel="alternate" type="application/rss+xml" title="Theoretical Ideations" href="http://138.68.15.179/rss/">
+</head>
+<body class="post-template tag-titanium-code-processor nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://138.68.15.179/">Home</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="http://138.68.15.179/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-titanium-code-processor">
+
+        <header class="post-header">
+            <h1 class="post-title">Ambiguous Blocks: when unknown values meet conditionals</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2013-04-12">12 April 2013</time>  on <a href="../tag/titanium-code-processor/">Titanium Code Processor</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>I last talked about <a title="How Unknown Values Work in the Titanium Code Processor" href="http://theoreticalideations.com/2013/02/05/how-unknown-values-work-in-the-titanium-code-processor/">unknown values and how they work</a> in expressions, but what happens when an unknown value is passed to a conditional statement? Let's say you try to do:</p>
+
+<pre><code class="language-JavaScript">var x = new Date();  
+if (x &lt; new Date(2013, 3, 12)) {  
+    console.log('It is before April 12th, 2013');
+} else {
+    console.log('It is on or after April 12th, 2013');
+}
+</code></pre>
+
+<p>What should happen here? From an analysis perspective, both branches will be run at some point in time by someone, so it makes sense to analyze both branches and this is exactly what the code processor does. In general, anytime a decision needs to be made on whether or not a block of code needs to be executed and that decision is based on an unknown value, that code is executed.</p>
+
+<p>This raises the question of course, what happens when statements inside of this code block affect code outside of the block? For example:</p>
+
+<pre><code class="language-JavaScript">var x = 10;  
+if (new Date()) {  
+    x += 10;
+}
+console.log(x);  
+</code></pre>
+
+<p>What should the value of x be when it is logged to the console? Since it depends on how the actual code will be executed on device, the answer is that we don't know and so I set x to unknown. Since code processor has to treat assignments (and related operations) differently inside of the block than it does outside of the block, the code processor flags the block as <em>ambiguous</em>.</p>
+
+<p>There are further rules and restrictions when dealing with these ambiguous blocks. What happens when a return statement is encountered inside of an ambiguous block? In this case, the code processor marks the function as having an unknown return value, stops evaluating the block, and continues outside the block. Semantically, the return behaves as if it were a break statement inside a loop block. The rest of the function is evaluated, and then unknown is returned. Similar, but a lot more tricky, is throw statements; honestly I haven't figured this one out yet.</p>
+
+<p>My examples so far have all been if statements, but what about loops? The same rules apply, with special handling of the iteration constructs. For for loops, while loops, and do-while loops, if the loop conditional is unknown, the body of the loop is evaluated exactly once as an ambiguous block. If the iteration condition is known for the first few iterations, but later becomes unknown, then the block is evaluated one more time in ambiguous mode as a sort of "clean up." Note that a for loop conditional is the middle argument, i.e. the "i &lt; Date.now()" bit below:</p>
+
+<pre><code class="language-JavaScript">for (var i = 0, i &lt; Date.now(); i++) {}  
+</code></pre>
+
+<p>For-in loops are different than the other loops, since they don't have an iteration condition. Instead, a for-in loop is evaluated in ambiguous mode if the value to be iterated over is unknown, as shown below:</p>
+
+<pre><code class="language-JavaScript">for (var i in Date.now()) {}  
+</code></pre>
+
+<p>There is one more important case that the code processor handles: what happens when a function is called inside of an ambiguous block? That will be discussed in my next post dealing with ambiguous contexts, so stay tuned.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/bryan-hughes/" style="background-image: url(https://www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s&amp;)"><span class="hidden">Bryan Hughes's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/bryan-hughes/">Bryan Hughes</a></h4>
+
+                    <p>I'm a web framework dev at Rdio and love JavaScript! I'm also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">San Francisco, CA</span>
+                    <span class="author-link icon-link"><a href="https://github.com/bryan-m-hughes">https://github.com/bryan-m-hughes</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Ambiguous%20Blocks%3A%20when%20unknown%20values%20meet%20conditionals&amp;url=http://138.68.15.179/ambiguous-blocks-when-unknown-values-meet-conditionals/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://138.68.15.179/ambiguous-blocks-when-unknown-values-meet-conditionals/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://138.68.15.179/ambiguous-blocks-when-unknown-values-meet-conditionals/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="../hiking-and-photographing-upper-stevens-creek-county-park/">
+        <section class="post">
+            <h2>Hiking and photographing Upper Stevens Creek County Park</h2>
+            <p>It's been a few months since I've gone hiking, but I finally managed to get out and go hiking…</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="../tomb-raider-in-a-post-the-walking-deadspec-ops-the-line-world/">
+        <section class="post">
+            <h2>Tomb Raider in a post The Walking Dead and Spec Ops: The Line world</h2>
+            <p>I've recently finished playing the new Tomb Raider. It's certainly a good game, but I can't help but feel…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://138.68.15.179">Theoretical Ideations</a> © 2018</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=d03024f356"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=d03024f356"></script>
+
+</body>

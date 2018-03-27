@@ -1,0 +1,219 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Introducing Raspi-LLIO (Low Level I/O)</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=d03024f356">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://138.68.15.179/introducing-raspi-llio-low-level-io/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://138.68.15.179/introducing-raspi-llio-low-level-io/amp/">
+    
+    <meta property="og:site_name" content="Theoretical Ideations">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Introducing Raspi-LLIO (Low Level I/O)">
+    <meta property="og:description" content="In preparation for the upcoming NodeBots Day in San Francisco, I have just published a new library for the Raspberry Pi, called raspi-llio (Low Level Input/Output). This library currently provides access to GPIO, I2C, and PWM capabilities, with SPI and UART capabilities coming soon. This library provides a Node.">
+    <meta property="og:url" content="http://138.68.15.179/introducing-raspi-llio-low-level-io/">
+    <meta property="article:published_time" content="2014-07-21T16:54:09.000Z">
+    <meta property="article:modified_time" content="2014-10-23T05:21:13.000Z">
+    <meta property="article:tag" content="JavaScript">
+    <meta property="article:tag" content="nodebots">
+    <meta property="article:tag" content="Raspberry-Pi">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Introducing Raspi-LLIO (Low Level I/O)">
+    <meta name="twitter:description" content="In preparation for the upcoming NodeBots Day in San Francisco, I have just published a new library for the Raspberry Pi, called raspi-llio (Low Level Input/Output). This library currently provides access to GPIO, I2C, and PWM capabilities, with SPI and UART capabilities coming soon. This library provides a Node.">
+    <meta name="twitter:url" content="http://138.68.15.179/introducing-raspi-llio-low-level-io/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Bryan Hughes">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="JavaScript, nodebots, Raspberry-Pi">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Theoretical Ideations",
+        "logo": "http://138.68.15.179/ghost/img/ghosticon.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Bryan Hughes",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "http://138.68.15.179/author/bryan-hughes/",
+        "sameAs": [
+            "https://github.com/bryan-m-hughes"
+        ],
+        "description": "I&#x27;m a web framework dev at Rdio and love JavaScript! I&#x27;m also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!"
+    },
+    "headline": "Introducing Raspi-LLIO (Low Level I/O)",
+    "url": "http://138.68.15.179/introducing-raspi-llio-low-level-io/",
+    "datePublished": "2014-07-21T16:54:09.000Z",
+    "dateModified": "2014-10-23T05:21:13.000Z",
+    "keywords": "JavaScript, nodebots, Raspberry-Pi",
+    "description": "In preparation for the upcoming NodeBots Day in San Francisco, I have just published a new library for the Raspberry Pi, called raspi-llio (Low Level Input/Output). This library currently provides access to GPIO, I2C, and PWM capabilities, with SPI and UART capabilities coming soon. This library provides a Node.",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://138.68.15.179"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.11">
+    <link rel="alternate" type="application/rss+xml" title="Theoretical Ideations" href="http://138.68.15.179/rss/">
+</head>
+<body class="post-template tag-javascript tag-nodebots tag-raspberry-pi nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://138.68.15.179/">Home</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="http://138.68.15.179/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-javascript tag-nodebots tag-raspberry-pi">
+
+        <header class="post-header">
+            <h1 class="post-title">Introducing Raspi-LLIO (Low Level I/O)</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2014-07-21">21 July 2014</time>  on <a href="../tag/javascript/">JavaScript</a>, <a href="../tag/nodebots/">nodebots</a>, <a href="../tag/raspberry-pi/">Raspberry-Pi</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>In preparation for the upcoming <a href="https://ti.to/nodebotsday/sf2014">NodeBots Day in San Francisco</a>, I have just published a new library for the Raspberry Pi, called <a href="https://github.com/bryan-m-hughes/raspi-llio">raspi-llio</a> (Low Level Input/Output). This library currently provides access to GPIO, I2C, and PWM capabilities, with SPI and UART capabilities coming soon.</p>
+
+<p>This library provides a Node.js interface to the <a href="http://wiringpi.com/">Wiring Pi</a> C library, and doesn’t do much to provide a higher-level interface that you typically see in JavaScript NodeBots libraries. I wrote the <a href="https://github.com/bryan-m-hughes/raspi-io">Raspi-IO</a> for such a purpose. My long-term plan is to rework Raspi-IO to be based off of Raspi-LLIO, but for now they are separate.</p>
+
+<p>The Library interfaces with Wiring Pi using <a href="https://github.com/node-ffi/node-ffi">node-ffi</a>, a Node.js FFI (Foreign Function Interface) implementation. node-ffi allows me to call straight into an external dynamic library without having to write a C++ Node.js plugin.</p>
+
+<p>As previously mentioned, the API is fairly low level. The API is designed around provided access to the Broadcom SoC’s peripherals, not around making specific use cases easier. As an example, take driving a servo:</p>
+
+<pre><code class="language-JavaScript">var raspi = require('raspi-llio');
+
+var pwm = new raspi.GPIO(1, raspi.GPIO.PWM_OUTPUT);
+
+var value = 20;  
+setInterval(function() {  
+  if (value == 20) {
+    value = 110;
+  } else {
+    value = 20;
+  }
+  pwm.pwmWrite(value);
+}, 2000);
+</code></pre>
+
+<p>The magic numbers 20 and 110 are fully left and fully right for a servo, and have to be arrived at somewhat experimentally (servos tend to vary slightly between each other with respect to their maximum and minimum PWM pulse widths). This contrasts sharply with Johnny-Five, which allows you to specify the position in degrees without even having to know that it is generating a PWM signal under the hood.</p>
+
+<p>Why would I want my library to be so explicit? PWM can be used for more than just driving a servo. You can also use a PWM to control the brightness of an LED. When driving an LED, you use the full spectrum of possible duty cycles, from 0% all the way up to 100%. Servos on the other hand vary from about 10% to 20% for full left and full right. As such, it makes the most sense to provide a more raw interface that allows controlling both use cases, given the emphasis on peripherals, not use cases.</p>
+
+<p>I wanted to keep the API low level because a) it allowed me to get the library written faster since Wiring Pi is also this low level and b) it’s not that difficult to get other libraries to “wrap” this library, providing whatever sort of higher-level functionality that library desires.</p>
+
+<p>I mostly wrote this library for myself. My plans for it are to use it to control an I2C sensor for my NodeBots Day project, and to have it form the backbone of Raspi-IO. I hope others can make use of this library, but I realize it may not be well-suited for most NodeBots developers. Either way, it’s been fun to work on and should be very useful in the future.</p>
+
+<p><strong>Update</strong>: raspi-llio now supports UART and SPI in theory, although it hasn't been tested against real devices yet.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/bryan-hughes/" style="background-image: url(https://www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s&amp;)"><span class="hidden">Bryan Hughes's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/bryan-hughes/">Bryan Hughes</a></h4>
+
+                    <p>I'm a web framework dev at Rdio and love JavaScript! I'm also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">San Francisco, CA</span>
+                    <span class="author-link icon-link"><a href="https://github.com/bryan-m-hughes">https://github.com/bryan-m-hughes</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Introducing%20Raspi-LLIO%20(Low%20Level%20I%2FO)&amp;url=http://138.68.15.179/introducing-raspi-llio-low-level-io/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://138.68.15.179/introducing-raspi-llio-low-level-io/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://138.68.15.179/introducing-raspi-llio-low-level-io/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="../on-gamergate/">
+        <section class="post">
+            <h2>On #GamerGate</h2>
+            <p>I had not originally intended to write about GamerGate, but it keeps coming up. If you are not familiar…</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="../the-emotional-meanings-of-her-and-cloud-atlas/">
+        <section class="post">
+            <h2>The emotional meanings of Her and Cloud Atlas</h2>
+            <p>I watched both Spike Jonze’ Her and Cloud Atlas again this last weekend, and I have been contemplating what…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://138.68.15.179">Theoretical Ideations</a> © 2018</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=d03024f356"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=d03024f356"></script>
+
+</body>

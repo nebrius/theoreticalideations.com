@@ -1,0 +1,267 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Destructuing assignment in ECMAScript 6 is my new favorite feature</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=d03024f356">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://138.68.15.179/destructuing-assignment-in-ecmascript-6-is-my-new-favorite-feature/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://138.68.15.179/destructuing-assignment-in-ecmascript-6-is-my-new-favorite-feature/amp/">
+    
+    <meta property="og:site_name" content="Theoretical Ideations">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Destructuing assignment in ECMAScript 6 is my new favorite feature">
+    <meta property="og:description" content="I recently attended an SFHTML5 meetup where Kit Cambridge gave a talk on some of the new features coming to ECMAScript 6, the next version of the JavaScript specification. There are a lot of exciting new features coming, but far and away my favorite is destructuring assignments. I always really">
+    <meta property="og:url" content="http://138.68.15.179/destructuing-assignment-in-ecmascript-6-is-my-new-favorite-feature/">
+    <meta property="article:published_time" content="2013-08-27T14:29:51.000Z">
+    <meta property="article:modified_time" content="2014-03-17T05:49:13.000Z">
+    <meta property="article:tag" content="ECMAScript 6">
+    <meta property="article:tag" content="JavaScript">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Destructuing assignment in ECMAScript 6 is my new favorite feature">
+    <meta name="twitter:description" content="I recently attended an SFHTML5 meetup where Kit Cambridge gave a talk on some of the new features coming to ECMAScript 6, the next version of the JavaScript specification. There are a lot of exciting new features coming, but far and away my favorite is destructuring assignments. I always really">
+    <meta name="twitter:url" content="http://138.68.15.179/destructuing-assignment-in-ecmascript-6-is-my-new-favorite-feature/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Bryan Hughes">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="ECMAScript 6, JavaScript">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Theoretical Ideations",
+        "logo": "http://138.68.15.179/ghost/img/ghosticon.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Bryan Hughes",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "http://138.68.15.179/author/bryan-hughes/",
+        "sameAs": [
+            "https://github.com/bryan-m-hughes"
+        ],
+        "description": "I&#x27;m a web framework dev at Rdio and love JavaScript! I&#x27;m also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!"
+    },
+    "headline": "Destructuing assignment in ECMAScript 6 is my new favorite feature",
+    "url": "http://138.68.15.179/destructuing-assignment-in-ecmascript-6-is-my-new-favorite-feature/",
+    "datePublished": "2013-08-27T14:29:51.000Z",
+    "dateModified": "2014-03-17T05:49:13.000Z",
+    "keywords": "ECMAScript 6, JavaScript",
+    "description": "I recently attended an SFHTML5 meetup where Kit Cambridge gave a talk on some of the new features coming to ECMAScript 6, the next version of the JavaScript specification. There are a lot of exciting new features coming, but far and away my favorite is destructuring assignments. I always really",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://138.68.15.179"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.11">
+    <link rel="alternate" type="application/rss+xml" title="Theoretical Ideations" href="http://138.68.15.179/rss/">
+</head>
+<body class="post-template tag-ecmascript-6 tag-javascript nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://138.68.15.179/">Home</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="http://138.68.15.179/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-ecmascript-6 tag-javascript">
+
+        <header class="post-header">
+            <h1 class="post-title">Destructuing assignment in ECMAScript 6 is my new favorite feature</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2013-08-27">27 August 2013</time>  on <a href="../tag/ecmascript-6/">ECMAScript 6</a>, <a href="../tag/javascript/">JavaScript</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>I recently attended an <a href="http://www.meetup.com/sfhtml5/">SFHTML5</a> meetup where <a href="https://twitter.com/kitcambridge">Kit Cambridge</a> gave a <a href="https://speakerdeck.com/kitcambridge/es-6-the-refined-parts-redux">talk</a> on some of the new features coming to ECMAScript 6, the next version of the JavaScript specification. There are a lot of exciting new features coming, but far and away my favorite is <a href="http://wiki.ecmascript.org/doku.php?id=harmony:destructuring">destructuring assignments</a>.</p>
+
+<p>I always really liked how Python could return tuples from methods and you could assign them to tuples of variables and just use them. Well, destructuring assignments in JavaScript are a much more powerful version of the same thing. Let's start with a simple example:</p>
+
+<pre><code class="language-JavaScript">let [a, b] = ['Hank', 'Dean'];
+
+console.log(a); // Hank  
+console.log(b); // Dean  
+</code></pre>
+
+<p>Here I am using the new 'let' keyword (block-scoped equivalent to 'var') to assign to variables, a and b, to the first and second entry of an array, respectively. It mimics how tuples work in Python very closely, and means that no longer do we have to do this:</p>
+
+<pre><code class="language-JavaScript">function getDetectiveInfo() {  
+    return [{
+        name: 'Hank Venture',
+        age: 'It\'s complicated'
+    }, {
+        name: 'The Alchemist',
+        age: 'Redacted'
+    }];
+}
+
+var detectives = getDetectiveInfo(),  
+    hank = detectives[0],
+    al = detectives[1];
+
+console.log(hank.name); // Hank Venture  
+console.log(al.name); // The Alchemist  
+</code></pre>
+
+<p>because we can instead do this:</p>
+
+<pre><code class="language-JavaScript">function getDetectiveInfo() {  
+    return [{
+        name: 'Hank Venture',
+        age: 'It\'s complicated'
+    }, {
+        name: 'The Alchemist',
+        age: 'Redacted'
+    }];
+}
+
+let [hank, al] = getDetectiveInfo();
+
+console.log(hank.name); // Hank Venture  
+console.log(al.name); // The Alchemist  
+</code></pre>
+
+<p>Pretty neat. It gets much better though, because we can also destructure objects!</p>
+
+<pre><code class="language-JavaScript">let { name: myname, occupation: myoccupation } = {  
+    name: 'The Monarch',
+    occupation: 'Arching Dr. Venture'
+};
+
+console.log(myname); // The Monarch  
+console.log(myoccupation); // Arching Dr. Venture  
+</code></pre>
+
+<p>I can already see how much more concise and readable code will be when dealing with REST calls, JSON parsing, and working with third party libraries in general. When combined with iterators, another new ECMAScript 6 feature, iterating over arrays of objects will become <em>considerably</em> easier. For example:</p>
+
+<pre><code class="language-JavaScript">var villians = [{  
+    name: 'The Monarch',
+    realName: 'Malcolm'
+},{
+    name: 'Baron Ünderbheit',
+    realName: 'Werner Ünderbheit IV'
+},{
+    name: 'Phantom Limb',
+    realName: 'Hamilton G. Fantomos'
+}];
+
+// The Monarch is actually named Malcolm
+// Baron Ünderbheit is actually named Werner Ünderbheit IV
+// Phantom Limb is actually named Hamilton G. Fantomos
+for (let {name: n, realName: r } of villians) {  
+    console.log(n + ' is actually named ' + r);
+}
+</code></pre>
+
+<p>So yeah, this stuff is awesome! I love it because it will make my code more readable, concise, less error prone, and possibly even more efficient since we don't have to allocate a temp variable. I can't wait for it to become mainstream.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/bryan-hughes/" style="background-image: url(https://www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s&amp;)"><span class="hidden">Bryan Hughes's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/bryan-hughes/">Bryan Hughes</a></h4>
+
+                    <p>I'm a web framework dev at Rdio and love JavaScript! I'm also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">San Francisco, CA</span>
+                    <span class="author-link icon-link"><a href="https://github.com/bryan-m-hughes">https://github.com/bryan-m-hughes</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Destructuing%20assignment%20in%20ECMAScript%206%20is%20my%20new%20favorite%20feature&amp;url=http://138.68.15.179/destructuing-assignment-in-ecmascript-6-is-my-new-favorite-feature/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://138.68.15.179/destructuing-assignment-in-ecmascript-6-is-my-new-favorite-feature/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://138.68.15.179/destructuing-assignment-in-ecmascript-6-is-my-new-favorite-feature/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="../its-alive-my-node-jsrasperry-pi-powered-aquarium-is-up-and-running/">
+        <section class="post">
+            <h2>It's Alive! My Node.js/Rasperry Pi powered aquarium is up and running</h2>
+            <p>I worked hard this Labor Day weekend to get my aquarium controlling nodebot up and running, and I can…</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="../outside-lands-2013-for-the-love-of-music/">
+        <section class="post">
+            <h2>Outside Lands 2013: for the love of music</h2>
+            <p>Last weekend I attended Outside Lands for my third year in a row. For me, Outside Lands stands as…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://138.68.15.179">Theoretical Ideations</a> © 2018</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=d03024f356"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=d03024f356"></script>
+
+</body>

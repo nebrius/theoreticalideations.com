@@ -1,0 +1,306 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Understanding "this" in JavaScript</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=d03024f356">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://138.68.15.179/understanding-this-in-javascript/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://138.68.15.179/understanding-this-in-javascript/amp/">
+    
+    <meta property="og:site_name" content="Theoretical Ideations">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content='Understanding "this" in JavaScript'>
+    <meta property="og:description" content="Determining the &quot;this&quot; value in JavaScript function in seems to be a constant source of grief for JavaScript developers, so I feel like throwing my hat in the ring with my own attempt at explaining how it works. It's easier than you think As it turns out, this, in JavaScript">
+    <meta property="og:url" content="http://138.68.15.179/understanding-this-in-javascript/">
+    <meta property="article:published_time" content="2014-01-31T09:55:44.000Z">
+    <meta property="article:modified_time" content="2014-03-17T06:01:14.000Z">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content='Understanding "this" in JavaScript'>
+    <meta name="twitter:description" content="Determining the &quot;this&quot; value in JavaScript function in seems to be a constant source of grief for JavaScript developers, so I feel like throwing my hat in the ring with my own attempt at explaining how it works. It's easier than you think As it turns out, this, in JavaScript">
+    <meta name="twitter:url" content="http://138.68.15.179/understanding-this-in-javascript/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Bryan Hughes">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Theoretical Ideations",
+        "logo": "http://138.68.15.179/ghost/img/ghosticon.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Bryan Hughes",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "http://138.68.15.179/author/bryan-hughes/",
+        "sameAs": [
+            "https://github.com/bryan-m-hughes"
+        ],
+        "description": "I&#x27;m a web framework dev at Rdio and love JavaScript! I&#x27;m also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!"
+    },
+    "headline": "Understanding &quot;this&quot; in JavaScript",
+    "url": "http://138.68.15.179/understanding-this-in-javascript/",
+    "datePublished": "2014-01-31T09:55:44.000Z",
+    "dateModified": "2014-03-17T06:01:14.000Z",
+    "description": "Determining the &quot;this&quot; value in JavaScript function in seems to be a constant source of grief for JavaScript developers, so I feel like throwing my hat in the ring with my own attempt at explaining how it works. It&#x27;s easier than you think As it turns out, this, in JavaScript",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://138.68.15.179"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.11">
+    <link rel="alternate" type="application/rss+xml" title="Theoretical Ideations" href="http://138.68.15.179/rss/">
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://138.68.15.179/">Home</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="http://138.68.15.179/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Understanding "this" in JavaScript</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2014-01-31">31 January 2014</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>Determining the "this" value in JavaScript function in seems to be a constant source of grief for JavaScript developers, so I feel like throwing my hat in the ring with my own attempt at explaining how it works.</p>
+
+<h2 id="itseasierthanyouthink">It's easier than you think</h2>
+
+<p>As it turns out, <code>this</code>, in JavaScript follows a few very simple rules and is quite easy to understand. It just so happens that a) it works very differently than C++, Java, C#, etc and b) many popular libraries, such as jQuery and backbone.js, often manage the <code>this</code> value to make it behave more like the aforementioned languages. These two things together make the behavior of <code>this</code> in JavaScript rather non-obvious. So let's dive in to how <code>this</code> works in pure JavaScript.</p>
+
+<p>First, let's look at plain old functions. Calling a function in JavaScript is simple: the <code>this</code> value is always set to the global object, which is <code>window</code> in browsers and <code>global</code> in Node.js.</p>
+
+<pre><code class="language-JavaScript">function foo() {  
+  console.log(this === window);
+}
+foo(); // prints "true"  
+</code></pre>
+
+<p>But what if the function is part of an object? As it turns out, the <code>this</code> value is determined by how the function is called, and nothing else. If the function is being directly referenced as a property on an object, then the <code>this</code> value is that object, otherwise it's global. To put it another way, if you have <code>foo.bar</code> or <code>foo["bar"]</code>, then <code>this</code> is set to foo.</p>
+
+<pre><code class="language-JavaScript">var foo = {  
+  bar: function () {
+    console.log(this === window);
+    console.log(this === foo);
+  }
+}
+foo.bar(); // prints "false" then "true"  
+</code></pre>
+
+<p>OK, seems simple enough, but what if that function is referenced indirectly? Since the <code>this</code> value is determined only by how it was called, that means it doesn't actually matter if it's a part of an object or not! If we assign the function to a variable and call it that way, then JavaScript follows the rules for simple functions and sets <code>this</code> to the global object:</p>
+
+<pre><code class="language-JavaScript">var foo = {  
+  bar: function () {
+    console.log(this === window);
+    console.log(this === foo);
+  }
+}
+var bar = foo.bar;  
+bar(); // prints "true" then "false"  
+foo.bar(); // prints "false" then "true"  
+</code></pre>
+
+<p>That's it. That's how <code>this</code> works. There really isn't anything else to it, unless you manually change the this value yourself.</p>
+
+<h2 id="changingthevalueofthis">Changing the value of "this"</h2>
+
+<p>There are three methods that all functions have that allow you to change the this value: <code>call</code>, <code>apply</code>, and <code>bind</code>. Call and apply are more or less the same, they just have a slightly different signature. The first argument to both methods is the value that you want for this, and after that is the arguments to the function.</p>
+
+<pre><code class="language-JavaScript">var x = {};  
+function foo (y, z) {  
+  console.log(this === x);
+  console.log(y + z);
+}
+foo.call(x, 5, 5); // prints "true" then "10"  
+foo.apply(x, [ 5, 5 ]); // prints "true" then "10"  
+</code></pre>
+
+<p>They each have their uses, so pick whichever one fits your needs best. One cool thing you can do with apply is to forward arguments to another function without needing to know anything about them,  which is really handy in prototypal inheritance:</p>
+
+<pre><code class="language-JavaScript">function x() {}  
+x.prototype.hi = function (a, b) {  
+  console.log(a + b);
+}
+
+function y() {}  
+y.prototype = new x();  
+y.prototype.hi = function () {  
+  x.prototype.hi.apply(this, arguments)
+}
+
+var z = new y();  
+z.hi(5, 5); // prints "10"  
+</code></pre>
+
+<p>The third function, <code>bind</code>, works a little differently. When you call bind, it doesn't actually call the function, but instead returns a new function that will have its <code>this</code> value set to whatever you supplied to bind so that you can call it later:</p>
+
+<pre><code class="language-JavaScript">var x = {};  
+function foo() {  
+  console.log(this === x);
+}
+
+var boundFoo = foo.bind(x);  
+foo(); // prints "false"  
+boundFoo(); // prints "true"  
+</code></pre>
+
+<p>Note: bind is in ECMAScript 5 only, so it doesn't work in IE8 and older, but fortunately underscore.js has an implementation that works in older browsers (<code>_.bind</code>).</p>
+
+<h2 id="callbacks">Callbacks</h2>
+
+<p>The way that <code>this</code> works becomes really annoying when you're dealing with callbacks because the <code>this</code> value is set to the global object unless the underlying event firing mechanism changes it for you.</p>
+
+<pre><code class="language-JavaScript">var x = {  
+  foo: function () {
+    console.log(this === x);
+    console.log(this === window);
+    setTimeout(function () {
+      console.log(this === x);
+      console.log(this === window);
+    }, 1000);
+  }
+};
+x.foo(); // prints "true" then "false", then about a second later prints "false" then "true"  
+</code></pre>
+
+<p>A lot of people do something like:</p>
+
+<pre><code class="language-JavaScript">var self = this;  
+</code></pre>
+
+<p>and then reference <code>self</code> in their callbacks. It works, but feels a little hacky. Instead, you can also do:</p>
+
+<pre><code class="language-JavaScript">var x = {  
+  foo: function () {
+    console.log(this === x);
+    console.log(this === window);
+    setTimeout(function () {
+      console.log(this === x);
+      console.log(this === window);
+    }.bind(this), 1000);
+  }
+};
+x.foo(); // prints "true" then "false", then about a second later prints "true" then "false"  
+</code></pre>
+
+<p>Now the <code>this</code> value is what we want it to be for our callback. It's worth point out though that aliasing <code>this</code> to <code>self</code> does have one nice advantage: <code>self</code> can be minified to a single character, whereas <code>this</code> will always be 4 characters since it's a keyword. If code size is critical, then aliasing this to self almost always results in slightly smaller code size.</p>
+
+<p>One last note about libraries and callbacks: many libraries use apply and call to set the this value to something more useful than the global object, so make sure you read the documentation to make sure that you are getting the <code>this</code> value you expect. If you want a <code>this</code> value other than what the library sets, just use <code>.bind</code> or <code>_.bind</code>. In the case of nested applys, calls, or binds, the last one wins, so you can always set it to whatever you want.</p>
+
+<p>I hope this helps demystify how <code>this</code> works in JavaScript!</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/bryan-hughes/" style="background-image: url(https://www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s&amp;)"><span class="hidden">Bryan Hughes's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/bryan-hughes/">Bryan Hughes</a></h4>
+
+                    <p>I'm a web framework dev at Rdio and love JavaScript! I'm also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">San Francisco, CA</span>
+                    <span class="author-link icon-link"><a href="https://github.com/bryan-m-hughes">https://github.com/bryan-m-hughes</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Understanding%20%22this%22%20in%20JavaScript&amp;url=http://138.68.15.179/understanding-this-in-javascript/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://138.68.15.179/understanding-this-in-javascript/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://138.68.15.179/understanding-this-in-javascript/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="../a-house-divided-the-walking-dead-continues/">
+        <section class="post">
+            <h2>A House Divided: The Walking Dead continues</h2>
+            <p>Episode 2 of season 2 of Telltale Game's The Walking Dead was just released last week, and I finally…</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="../im-leaving-windows-phone-for-ios-begrudgingly/">
+        <section class="post">
+            <h2>I'm leaving Windows Phone for iOS, begrudgingly</h2>
+            <p>I owned an HTC Windows Phone 8X for a little under a year and a half, and after some…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://138.68.15.179">Theoretical Ideations</a> © 2018</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=d03024f356"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=d03024f356"></script>
+
+</body>

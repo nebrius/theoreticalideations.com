@@ -1,0 +1,219 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>How do you do dynamic offline JavaScript anyways?</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=d03024f356">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://138.68.15.179/how-do-you-do-dynamic-offline-javascript-anyways/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://138.68.15.179/how-do-you-do-dynamic-offline-javascript-anyways/amp/">
+    
+    <meta property="og:site_name" content="Theoretical Ideations">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How do you do dynamic offline JavaScript anyways?">
+    <meta property="og:description" content="In a previous post, I established that doing dynamic JavaScript analysis is the way to go for the Titanium Code Processor, but what about the problems inherent in dynamic analysis? I'll mention again a code snippet from the previous post: var x = Date.now().getFullYear(),       y; if (x &amp;amp;gt;">
+    <meta property="og:url" content="http://138.68.15.179/how-do-you-do-dynamic-offline-javascript-anyways/">
+    <meta property="article:published_time" content="2012-12-04T10:37:10.000Z">
+    <meta property="article:modified_time" content="2014-03-17T05:38:09.000Z">
+    <meta property="article:tag" content="Titanium Code Processor">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="How do you do dynamic offline JavaScript anyways?">
+    <meta name="twitter:description" content="In a previous post, I established that doing dynamic JavaScript analysis is the way to go for the Titanium Code Processor, but what about the problems inherent in dynamic analysis? I'll mention again a code snippet from the previous post: var x = Date.now().getFullYear(),       y; if (x &amp;amp;gt;">
+    <meta name="twitter:url" content="http://138.68.15.179/how-do-you-do-dynamic-offline-javascript-anyways/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Bryan Hughes">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Titanium Code Processor">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Theoretical Ideations",
+        "logo": "http://138.68.15.179/ghost/img/ghosticon.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Bryan Hughes",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "http://138.68.15.179/author/bryan-hughes/",
+        "sameAs": [
+            "https://github.com/bryan-m-hughes"
+        ],
+        "description": "I&#x27;m a web framework dev at Rdio and love JavaScript! I&#x27;m also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!"
+    },
+    "headline": "How do you do dynamic offline JavaScript anyways?",
+    "url": "http://138.68.15.179/how-do-you-do-dynamic-offline-javascript-anyways/",
+    "datePublished": "2012-12-04T10:37:10.000Z",
+    "dateModified": "2014-03-17T05:38:09.000Z",
+    "keywords": "Titanium Code Processor",
+    "description": "In a previous post, I established that doing dynamic JavaScript analysis is the way to go for the Titanium Code Processor, but what about the problems inherent in dynamic analysis? I&#x27;ll mention again a code snippet from the previous post: var x &#x3D; Date.now().getFullYear(),       y; if (x &amp;amp;gt;",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://138.68.15.179"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.11">
+    <link rel="alternate" type="application/rss+xml" title="Theoretical Ideations" href="http://138.68.15.179/rss/">
+</head>
+<body class="post-template tag-titanium-code-processor nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://138.68.15.179/">Home</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="http://138.68.15.179/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-titanium-code-processor">
+
+        <header class="post-header">
+            <h1 class="post-title">How do you do dynamic offline JavaScript anyways?</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2012-12-04">04 December 2012</time>  on <a href="../tag/titanium-code-processor/">Titanium Code Processor</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>In a previous <a href="http://theoreticalideations.com/2012/11/19/why-choose-dynamic-analysis-over-static-analysis/">post</a>, I established that doing dynamic JavaScript analysis is the way to go for the <a href="https://github.com/appcelerator/titanium-code-processor">Titanium Code Processor</a>, but what about the problems inherent in dynamic analysis?</p>
+
+<p>I'll mention again a code snippet from the previous post:</p>
+
+<pre><code class="language-JavaScript">var x = Date.now().getFullYear(),  
+    y;
+if (x &amp;gt; 2012) {  
+    y = 2012;
+} else {
+    y = x;
+}
+</code></pre>
+
+<p>We don't know what the current date will be when user's actually run the app, so what do we do? My solution is to add a new data type called 'unknown' to the 5 data types already supported by JavaScript (undefined, boolean, number, string, and object). Whenever an expression is encountered that cannot be evaluated, that expression returns 'unknown'.</p>
+
+<p>So what do we do with these values, such as in the code snippet? It depends on the specific JavaScript rule, but the gist is to evaluate all possibilities and keep things generic. In the case of 'if' statements with an unknown conditional, as above, both conditionals are evaluated. "But wait," you say, "you can't do that because JavaScript doesn't have block scope and the order of execution will affect the results." You would be correct of course, so that is where our next bit of magic comes into play.</p>
+
+<p>Whenever a block is evaluated in an unknown state, we evaluate it in 'ambiguous mode.' Ambiguous mode changes the behavior of things like assignment to make sure the results remain consistent. Any assignment in an ambiguous block sets a value of unknown to the identifier, even if we are able to evaluate the value. This way, assignments to the same identifier in both branches of the conditional don't stomp on each other, and we can safely say that 'y' is unknown. Intuitively this makes sense, because we really don't know what the value of y will be. But what if we call a function from within an ambiguous block, like so:  </p>
+
+<pre><code class="language-JavaScript">var x = Date.now().getFullYear(),  
+    y;
+function foo() {  
+    var z = 10;
+    y = z;
+    console.log(x, y, z);
+}
+if (x &lt; 2012) {  
+    foo();
+}
+</code></pre>
+
+<p>We could evaluate the function call the same way we do anything else in an ambiguous block (assignments always assign unknown, etc), but in this case we can be a little more accurate. We do know that the value of z will always be <code>10</code>, regardless of how the function was called, so we evaluate ambiguous functions as a hybrid of standard evaluation and ambiguous blocks. Anything assigned within the context of a function is evaluated normally, but everything outside the context of the function context is treated as ambiguous. This is applied to nested function calls as well. The ambiguous function forms a sort of context "wall," where everything inside of that function is evaluated in standard mode, but everything outside of the wall is evaluated in ambiguous mode.</p>
+
+<p>These two concepts form the core of the Titanium Code Processor's runtime engine. It's not 100% accurate in all cases of course; contexts can become so full of unknown values that nothing "real" can be evaluated, but it works in most cases (far more cases than static analysis, to be certain). The core concept is quite simple, unknown values and ambiguous blocks and functions, but they are also very powerful and enable us to do offline JavaScript analysis quite effectively. Stay tuned for more posts on unknown values and ambiguous modes.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/bryan-hughes/" style="background-image: url(https://www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s&amp;)"><span class="hidden">Bryan Hughes's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/bryan-hughes/">Bryan Hughes</a></h4>
+
+                    <p>I'm a web framework dev at Rdio and love JavaScript! I'm also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">San Francisco, CA</span>
+                    <span class="author-link icon-link"><a href="https://github.com/bryan-m-hughes">https://github.com/bryan-m-hughes</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=How%20do%20you%20do%20dynamic%20offline%20JavaScript%20anyways%3F&amp;url=http://138.68.15.179/how-do-you-do-dynamic-offline-javascript-anyways/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://138.68.15.179/how-do-you-do-dynamic-offline-javascript-anyways/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://138.68.15.179/how-do-you-do-dynamic-offline-javascript-anyways/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="../happy-holidays-from-theoretical-ideations/">
+        <section class="post">
+            <h2>Happy Holidays from Theoretical Ideations</h2>
+            <p>I hope everyone is enjoying their holiday season so far. I have been neck deep in some Titanium Mobile…</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="../variable-hoisting-in-javascript-and-why-you-should-declare-variables-at-the-top/">
+        <section class="post">
+            <h2>Variable hoisting in JavaScript and why you should declare variables at the top</h2>
+            <p>I was recently forwarded an article called JavaScript Adolescence. Go read the article because it's a good one, for…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://138.68.15.179">Theoretical Ideations</a> © 2018</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=d03024f356"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=d03024f356"></script>
+
+</body>

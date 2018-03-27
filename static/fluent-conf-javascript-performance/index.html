@@ -1,0 +1,295 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>JavaScript Performance at Fluent Conf</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=d03024f356">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://138.68.15.179/fluent-conf-javascript-performance/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://138.68.15.179/fluent-conf-javascript-performance/amp/">
+    
+    <meta property="og:site_name" content="Theoretical Ideations">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="JavaScript Performance at Fluent Conf">
+    <meta property="og:description" content="There was also a pretty good selection of talks concerning performance at Fluent Conf this year. The Perception of Speed Steve Souders, @souders Quick side note: Steve Souders very recently left Google. In fact, he had been at his new position with Fastly for a whopping two days before he">
+    <meta property="og:url" content="http://138.68.15.179/fluent-conf-javascript-performance/">
+    <meta property="article:published_time" content="2014-03-19T00:58:21.000Z">
+    <meta property="article:modified_time" content="2014-03-19T00:58:21.000Z">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="JavaScript Performance at Fluent Conf">
+    <meta name="twitter:description" content="There was also a pretty good selection of talks concerning performance at Fluent Conf this year. The Perception of Speed Steve Souders, @souders Quick side note: Steve Souders very recently left Google. In fact, he had been at his new position with Fastly for a whopping two days before he">
+    <meta name="twitter:url" content="http://138.68.15.179/fluent-conf-javascript-performance/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Bryan Hughes">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Theoretical Ideations",
+        "logo": "http://138.68.15.179/ghost/img/ghosticon.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Bryan Hughes",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "http://138.68.15.179/author/bryan-hughes/",
+        "sameAs": [
+            "https://github.com/bryan-m-hughes"
+        ],
+        "description": "I&#x27;m a web framework dev at Rdio and love JavaScript! I&#x27;m also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!"
+    },
+    "headline": "JavaScript Performance at Fluent Conf",
+    "url": "http://138.68.15.179/fluent-conf-javascript-performance/",
+    "datePublished": "2014-03-19T00:58:21.000Z",
+    "dateModified": "2014-03-19T00:58:21.000Z",
+    "description": "There was also a pretty good selection of talks concerning performance at Fluent Conf this year. The Perception of Speed Steve Souders, @souders Quick side note: Steve Souders very recently left Google. In fact, he had been at his new position with Fastly for a whopping two days before he",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://138.68.15.179"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.11">
+    <link rel="alternate" type="application/rss+xml" title="Theoretical Ideations" href="http://138.68.15.179/rss/">
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://138.68.15.179/">Home</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="http://138.68.15.179/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">JavaScript Performance at Fluent Conf</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2014-03-18">18 March 2014</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>There was also a pretty good selection of talks concerning performance at Fluent Conf this year.</p>
+
+<h2 id="theperceptionofspeed">The Perception of Speed</h2>
+
+<h3 id="stevesouderssoudershttpstwittercomsouders">Steve Souders, <a href="https://twitter.com/souders">@souders</a></h3>
+
+<p>Quick side note: Steve Souders very recently left Google. In fact, he had been at his new position with <a href="http://www.fastly.com/">Fastly</a> for a whopping two days before he gave this talk. This talk was possibly my favorite talk of the entire conference.</p>
+
+<p>Our perception of speed is in many cases unrelated to the actual speed of things:</p>
+
+<p>It is not uncommon for civilian signal buttons to be installed that do nothing, but still make the person feeled empowered. In NYC, about 3/4 of all crosswalk buttons are disconnected. The London underground has open/close buttons next to doors, but they do nothing. Only the driver of the train can open and close doors.</p>
+
+<p>People at Houston Internation Airport had lots of complaints about how long luggage took to get to carousels. Airport officials did some research and found:</p>
+
+<ul>
+<li>On average, people took 1 minute to get to the caurosel and then waited 7 minutes to get their bags</li>
+<li>Decreasing the actual time the bags took to get to the caurosel had little impact on the number of complaints</li>
+<li>Instead, IAH added diverters and increased how long it took people to walk to the caurosel, and the complaints went away</li>
+</ul>
+
+<p>Mirrors and (now) TVs are placed in and around elevators to give people something else to focus on while waiting, thus reducing their annoyance. Disney is masterful at this sort of psychology based planning:</p>
+
+<ul>
+<li>They overestimate wait time displayed on their counters</li>
+<li>They set up their lines so you can't see all of it at once, and thus have no idea how long they actually are</li>
+</ul>
+
+<p>Coinstar found that their machines counted change so fast that people doubted the accuracy of the machines. They added a counter to slow the screen update rates and even play coin sounds to make it sound like it’s still working</p>
+
+<p>In a 2001 study, Amazon was found to feel the fastest but was actually the slowest among top internet destinations.</p>
+
+<p>Similar tricks are employed with the web. Browsers don’t show the next (blank) page immediately after a link is clicked because it increases user aggrevation, instead waiting for <code>body.onload</code> to be fired.</p>
+
+<p>When it comes to web design, if you are using an async mechanism that is ultimately synchronous from a UI flow perspective, show an indicator.</p>
+
+<ul>
+<li>It’s better to show an indicator at the area of focus (whatever was just clicked/tapped), than at the edge of the page</li>
+<li>WebViews and native mobile apps are especially egregious because there are no built-in busy indicators like browsers have</li>
+</ul>
+
+<p>Spinners and progress bars are only so good. “Natural” progress indicators are better. As an example, look at the Google search app in Android. When a link is clicked, it slides a new page across old one, with speed of translation being related to loading speed (apparently).</p>
+
+<p>Tips for reducing the feeling of waiting:</p>
+
+<ul>
+<li>Updates UI as soon as user action takes place</li>
+<li>Lay out a page with placeholders for slow-loading items (e.g. large images) so everything is sized before data comes in</li>
+<li>Show something, <em>anything</em>, for the user to look at that will keep them engaged. Text is great for this because it transfers quickly and it takes time for people to read.</li>
+<li>The instagram website handles this very well
+<ul><li>They set background color of placeholder to match base color in the image</li>
+<li>They display the metadata for the image (size, user, location, etc)</li></ul></li>
+</ul>
+
+<h2 id="insidejavascriptexecution">Inside JavaScript Execution</h2>
+
+<h3 id="chasedouglastxasehttpstwittercomtxase">Chase Douglas, <a href="https://twitter.com/txase">@txase</a></h3>
+
+<p>I did not like this talk, to the point I found it aggravating. It wasn't comprehensive, and instead focused on some areas that felt haphazardly chosen. What's worse, some of this information was just flat out wrong!</p>
+
+<p>As an example, he discussed what engines do when you have this code:</p>
+
+<pre><code class="language-JavaScript">function foo() {  
+    this.x = 10;
+    this.y = 20;
+}
+
+var bar = new foo();  
+var.z = 30;  
+</code></pre>
+
+<p>First of all, he called <code>foo</code> a class. <a href="http://raganwald.com/2014/01/19/prototypes-are-not-classes.html">Prototypes <em>are not</em> classes</a>!</p>
+
+<p>Second, he said that by assigning a value to <code>z</code>, the engine under the hood had to calculate a new class called <code>foo*</code>, and that assigning properties to an instantaited class is a performance hit. This is partly true, but only if you define your properties on the prototype, which he <em>does not</em> do above. To get the better performance, you need to declare your class as:</p>
+
+<pre><code class="language-JavaScript">function foo() {}  
+foo.prototype.x = 10;  
+foo.prototype.y = 20;  
+foo.prototype.z = 20;  
+</code></pre>
+
+<p>It was frustrating...what makes it worse is that he's implanting ideas like "JavaScript has classes" in peoples heads, when in fact it doesn't. It's not just semantics either because it's going to confuse people when <em>actual</em> classes land in ECMAScript 6.</p>
+
+<h2 id="secretsofthevirtualdom">Secrets of the Virtual DOM</h2>
+
+<h3 id="petehuntfloydophonehttptwittercomfloydophone">Pete Hunt <a href="http://twitter.com/floydophone">@floydophone</a></h3>
+
+<p>Why is developing UIs difficult? Errors usually aren't of the form "your code crashed in file x at line y", but more often of the form "It just doesn't feel right." As a result, UIs require lots of human verified testing because they often contain lots of state. TDD is pretty much a non-starter as a result. Reducing complexity of code is usually the best way to reduce the errors in UI code.</p>
+
+<p>The current approach to reducing complexity in web apps is to use data binding with a Model-View-Controller architecture. Data binding mechanisms in existing MVC systems try very hard to abstract away a lot of details from developers. This leads data-binding to being powerful, and fairly productive to work with, but are non-trivial in practice</p>
+
+<p>"All non-trivial abstractions, to some degree, are leaky." - Joel Spolsky</p>
+
+<p>MVC patterns tend to lead to a separation of concerns that shouldn't necessarily be separated, and don't separate certain things that should be. The ideal with MVC is that the any one piece doesn't really know or care much about the other pieces, but in practice the coupling is a lot tighter. Models and views in web-based MVC systems (which are usually just MV or MV* in practice) tend to be very closely coupled together. Often, views tell models when to fetch, what to set, etc, such that models are little more than dumb data recepticals with some networking logic in these cases.</p>
+
+<p>Proper separation of concerns is paramount in creating maintainable code. The reason being that proper separation of concerns leads to lots of simple modules that are easy to test in isolation. A major problem, though, is that <em>simple</em> does not always mean the same thing as <em>familiar</em>.</p>
+
+<p>“Programmers know the vale of everything and the cost of nothing” - Alan Perlis</p>
+
+<p>MVC patterns are very familiar, but are they really simple? There are a lot of things that you just have to know with MVC systems, because the data flow through an application is obscured.</p>
+
+<p>This line of thinking led Facebook to create a framework that eschews MVC entirely called <a href="http://facebook.github.io/react/">React</a></p>
+
+<p>In React, you create all of your DOM nodes in JavaScript, which allows devs to come up with the best separation of concerns, instead being forced into a predefined separation of concerns. It also makes it much easier to reason about JS programs since code for a single widget on screen isn't spread across 3, 4, 5 files.</p>
+
+<p>So what does this have to do with performance? As it turns out, React has another trick up its sleave: a virtual DOM.</p>
+
+<p>Every web developer knows that DOM manipulations are slow, but how do we deal with it? In practice, web apps in modern MVC frameworks are composed of a hodgepodge of code that data binds using a variety of mechanisms: updating single DOM nodes on a case-by-case basis, re-rendering an entire control, etc. Choosing the right one falls on the shoulders of the front-end developer. This case-by-case basis tends to be rather error-prone.</p>
+
+<p>React takes a different approach: they have what they call a "virtual" DOM that is a pure in-memory representation of the actual DOM that is very very fast. Whenever data changes, the entire virtual DOM is re-rendered, which is a fast operation. The React implementation then performs a diff between the virtual DOM and the real DOM, and only updates what changed.</p>
+
+<p>The advantage of this method is that the onus of performance is no longer on the front-end dev, but rather on the React devs. Optimizations only have to be done once, on React, instead of over and over and over in the code that uses React. As a result, React is much faster than Ember and Angular in most cases.</p>
+
+<p>"Simplicity is the ultimate sophistication" - Leonardo DaVinci</p>
+
+<p>The virtual DOM apprach is simpler, smaller, and usually more performant than MVC.</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/bryan-hughes/" style="background-image: url(https://www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s&amp;)"><span class="hidden">Bryan Hughes's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/bryan-hughes/">Bryan Hughes</a></h4>
+
+                    <p>I'm a web framework dev at Rdio and love JavaScript! I'm also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">San Francisco, CA</span>
+                    <span class="author-link icon-link"><a href="https://github.com/bryan-m-hughes">https://github.com/bryan-m-hughes</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=JavaScript%20Performance%20at%20Fluent%20Conf&amp;url=http://138.68.15.179/fluent-conf-javascript-performance/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://138.68.15.179/fluent-conf-javascript-performance/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://138.68.15.179/fluent-conf-javascript-performance/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="../the-rest-of-fluent-conf/">
+        <section class="post">
+            <h2>Everything Else at Fluent Conf</h2>
+            <p>In Pursuit of the Holy Grail: Building Isomorphic JavaScript Apps Spike Brehm, @spikebrehm Isomorphic JavaScript is code that can…</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="../ecmascript-6-at-fluent-conf/">
+        <section class="post">
+            <h2>ECMAScript 6 at Fluent Conf</h2>
+            <p>Last week, I attended Fluent Conf, a web conference in San Francisco. It was a really good conference overall,…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://138.68.15.179">Theoretical Ideations</a> © 2018</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=d03024f356"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=d03024f356"></script>
+
+</body>

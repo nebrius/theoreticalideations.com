@@ -1,0 +1,217 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Node.js + raspberry pi + aquarium = awesome!</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=d03024f356">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+
+    <link rel="canonical" href="http://138.68.15.179/node-js-raspberry-pi-aquarium-awesome/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://138.68.15.179/node-js-raspberry-pi-aquarium-awesome/amp/">
+    
+    <meta property="og:site_name" content="Theoretical Ideations">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Node.js + raspberry pi + aquarium = awesome!">
+    <meta property="og:description" content="Melissa and I recently bought a new aquarium. The tank is set up now and is currently cycling. We plan to get about 3 or 4 fish, with a German Blue Ram as the centerpiece fish. One of the things I really like about our tank is that it has">
+    <meta property="og:url" content="http://138.68.15.179/node-js-raspberry-pi-aquarium-awesome/">
+    <meta property="article:published_time" content="2013-05-10T16:08:03.000Z">
+    <meta property="article:modified_time" content="2014-06-30T06:28:18.000Z">
+    <meta property="article:tag" content="aquarium-control">
+    <meta property="article:tag" content="JavaScript">
+    <meta property="article:tag" content="node.js">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Node.js + raspberry pi + aquarium = awesome!">
+    <meta name="twitter:description" content="Melissa and I recently bought a new aquarium. The tank is set up now and is currently cycling. We plan to get about 3 or 4 fish, with a German Blue Ram as the centerpiece fish. One of the things I really like about our tank is that it has">
+    <meta name="twitter:url" content="http://138.68.15.179/node-js-raspberry-pi-aquarium-awesome/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Bryan Hughes">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="aquarium-control, JavaScript, node.js">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Theoretical Ideations",
+        "logo": "http://138.68.15.179/ghost/img/ghosticon.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Bryan Hughes",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "http://138.68.15.179/author/bryan-hughes/",
+        "sameAs": [
+            "https://github.com/bryan-m-hughes"
+        ],
+        "description": "I&#x27;m a web framework dev at Rdio and love JavaScript! I&#x27;m also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!"
+    },
+    "headline": "Node.js + raspberry pi + aquarium &#x3D; awesome!",
+    "url": "http://138.68.15.179/node-js-raspberry-pi-aquarium-awesome/",
+    "datePublished": "2013-05-10T16:08:03.000Z",
+    "dateModified": "2014-06-30T06:28:18.000Z",
+    "keywords": "aquarium-control, JavaScript, node.js",
+    "description": "Melissa and I recently bought a new aquarium. The tank is set up now and is currently cycling. We plan to get about 3 or 4 fish, with a German Blue Ram as the centerpiece fish. One of the things I really like about our tank is that it has",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://138.68.15.179"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.11">
+    <link rel="alternate" type="application/rss+xml" title="Theoretical Ideations" href="http://138.68.15.179/rss/">
+</head>
+<body class="post-template tag-aquarium-control tag-javascript tag-node-js nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://138.68.15.179/">Home</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="http://138.68.15.179/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-aquarium-control tag-javascript tag-node-js">
+
+        <header class="post-header">
+            <h1 class="post-title">Node.js + raspberry pi + aquarium = awesome!</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2013-05-10">10 May 2013</time>  on <a href="../tag/aquarium-control/">aquarium-control</a>, <a href="../tag/javascript/">JavaScript</a>, <a href="../tag/node-js/">node.js</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>Melissa and I recently bought a new aquarium. The tank is set up now and is currently cycling. We plan to get about 3 or 4 fish, with a <a href="http://en.wikipedia.org/wiki/Ram_cichlid">German Blue Ram</a> as the centerpiece fish. One of the things I really like about our tank is that it has a separate day/night LED lighting system in it. Power is reduced and night-time lighting is a little more realistic, but there is a major downside: there is no automation on the lights. There is a physical switch that you throw to switch between the lights and off, meaning we can't throw it on a standard electrical timer.</p>
+
+<p>Being the enterprising yet lazy programmer that I am, I couldn't just allow this situation to stand. I already have a Raspberry Pi that was just lying around (I originally intended to use for a <a title="Home Raspberry Pi Project" href="https://theoreticalideations.com/2013/01/16/home-raspberry-pi-project/">sleep project</a> but I got sidetracked with other projects). So I decided to get to work.</p>
+
+<p>Using a Raspberry Pi just to turn lights on and off at a preset schedule isn't a very good use of the hardware though, so I started brainstorming other cool things I could do with it, and I've settled on the following features for v1:  </p>
+
+<ul>  
+    <li>Lights will be switched automatically each day by querying an internet service for sunrise sunset times.</li>
+    <li>Delays/offsets from sunrise/sunset can be configured so that lights can mimic daylight breaking, which tends to be a little off from actual sunrise times</li>
+    <li>Switch to manual control</li>
+    <li>Have a web server running on the Raspberry Pi that clients can connect to to set the configuration options</li>
+</ul>  
+
+<p>That's a much better use of the hardware :)</p>
+
+<p>So far I have implemented a few odds and ends in node.js and have designed the interface circuit. On the software side, I implemented a new logging library for node.js called <a href="https://github.com/bryan-m-hughes/transport-logger">transport-logger</a> that is inspired by <a href="https://github.com/flatiron/winston">winston</a> (you can install it via "npm install transport-logger"). The schematic for the interface circuit is shown below</p>
+
+<p><a href="../static/2013/05/schem.png"><img alt="Aquarium Schamtic" src="../static/2013/05/schem.png" width="1048" height="582"></a></p>
+
+<p>The circuit is pretty simple. Starting at the connector for the Raspberry Pi, we go into a Texas Instruments CD40109B level shifter that converts the 3.3v signals from the Raspberry Pi to 5v levels (and provides a little protection in the process). The level shifter is powered by an ON-semi LM2574N 5v switching regulator. The 5v output signal from the level shifter controls the coils on two relays that are connected to the day and night LED setups. The relays are given power from the switch, which is in turn powered from the main aquarium supply. The switch allows me to either turn off the sytem entirely, or bypass the raspberry pi in case I need to remove it but don't want the lights to turn off. Below is a photo of some testing I was doing on a breadboard where I tested powering the relays from the switching regulator.</p>
+
+<p><a href="../static/2013/05/proto.jpg"><img alt="Breadboard Testing" src="../static/2013/05/proto.jpg" width="1200" height="916"></a></p>
+
+<p>All of the project is being hosted on <a href="https://github.com/bryan-m-hughes/aquarium-control">GitHub</a> and all software, schematics, layouts, etc are released under the GPLv3 license.</p>
+
+<p><strong>UPDATE</strong>: Some people have been curious how I installed node.js on my Raspberry Pi. It has to be done manually, but it's really easy. Download node.js from their website by browsing all release files at <a href="http://nodejs.org/dist/">http://nodejs.org/dist/</a>. As of this writing, the latest version that has an arm build is 0.10.6 at <a href="http://nodejs.org/dist/v0.10.6/node-v0.10.6-linux-arm-pi.tar.gz">http://nodejs.org/dist/v0.10.6/node-v0.10.6-linux-arm-pi.tar.gz</a>. For some reason, 0.10.7-0.10.9 doesn't have builds...hopefully they will start building for the Raspberry PI again. Once you've got the file, unzip it on your raspberry pi and add the bin folder to your PATH and you're up and running!</p>
+
+<p><strong>UPDATE 2</strong>: Looks like there are ARM builds of node.js again. The latest version as of this update with Raspberry Pi support is 0.10.13: <a href="http://nodejs.org/dist/v0.10.13/node-v0.10.13-linux-arm-pi.tar.gz">http://nodejs.org/dist/v0.10.13/node-v0.10.13-linux-arm-pi.tar.gz</a></p>
+
+<p><strong>UPDATE 3</strong>: The project is finished! To see the details on the final product, checkout <a href="https://theoreticalideations.com/2013/09/05/anatomy-of-a-nodebot-powered-aquarium-part-1-overview/" target="_blank">Anatomy of a nodebot powered aquarium part 1: overview</a></p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/bryan-hughes/" style="background-image: url(https://www.gravatar.com/avatar/b2c8ee28e90a3e97ba056d444114bb06?s&amp;)"><span class="hidden">Bryan Hughes's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/bryan-hughes/">Bryan Hughes</a></h4>
+
+                    <p>I'm a web framework dev at Rdio and love JavaScript! I'm also an amateur photographer, avid gamer, film enthusiast, wine lover, and very lucky husband!</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">San Francisco, CA</span>
+                    <span class="author-link icon-link"><a href="https://github.com/bryan-m-hughes">https://github.com/bryan-m-hughes</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Node.js%20%2B%20raspberry%20pi%20%2B%20aquarium%20%3D%20awesome!&amp;url=http://138.68.15.179/node-js-raspberry-pi-aquarium-awesome/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://138.68.15.179/node-js-raspberry-pi-aquarium-awesome/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://138.68.15.179/node-js-raspberry-pi-aquarium-awesome/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="../jsconf-2013-was-amazing/">
+        <section class="post">
+            <h2>JSConf 2013 was amazing!</h2>
+            <p>I have been at JSConf US this last week, and I can safely say it is the best conference…</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="../hiking-and-photographing-upper-stevens-creek-county-park/">
+        <section class="post">
+            <h2>Hiking and photographing Upper Stevens Creek County Park</h2>
+            <p>It's been a few months since I've gone hiking, but I finally managed to get out and go hiking…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://138.68.15.179">Theoretical Ideations</a> © 2018</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=d03024f356"></script>
+    <script type="text/javascript" src="../assets/js/index.js?v=d03024f356"></script>
+
+</body>
